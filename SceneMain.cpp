@@ -1,6 +1,7 @@
 #include "DxLib.h"
 #include <cassert>
 #include "SceneMain.h"
+#include "game.h"
 
 namespace
 {
@@ -15,6 +16,9 @@ namespace
 	// プレイヤーグラフィックサイズ
 	constexpr int kPlayerFraphivcSizeX = 32;
 	constexpr int kPlayerFraphivcSizeY = 32;
+
+	// 地面の高さ
+	constexpr int kFieldY = Game::kScreenHeight - 64;
 }
 
 
@@ -65,5 +69,7 @@ void SceneMain::update()
 // 毎フレームの描画
 void SceneMain::draw()
 {
+	// 地面の描画
+	DrawLine(0, kFieldY, Game::kScreenWidth, kFieldY, GetColor(255, 255, 255));
 	m_player.draw();
 }
