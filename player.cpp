@@ -7,6 +7,9 @@ namespace
 {
 	// キャラっクターアニメーション１コマ当たりのフレーム数
 	constexpr int kAnimeChangeFrame = 8;
+	// キャラクターの移動速度
+	constexpr int kSpeedX = 3;
+	constexpr int kSpeedY = 3;
 }
 
 
@@ -48,32 +51,57 @@ void Player::update()
 	{
 		m_dirNo = 3;
 		isKey = true;
+		m_pos.y -= kSpeedY;
+
+		if (m_pos.y < 0)
+		{
+			m_pos.y = 0;
+		}
 	}
 	if (padState & PAD_INPUT_DOWN)
 	{
 		m_dirNo = 0;
 		isKey = true;
+		m_pos.y += kSpeedY;
+
+		if (m_pos.y > Game::kScreenHeight - kGraphicSizeY)
+		{
+			m_pos.y = static_cast<float>(Game::kScreenHeight - kGraphicSizeY);
+		}
 	}
 	if (padState & PAD_INPUT_LEFT)
 	{
 		m_dirNo = 1;
 		isKey = true;
+		m_pos.x -= kSpeedX;
+
+		if (m_pos.x < 0)
+		{
+			m_pos.x = 0;
+		}
 	}
 	if (padState & PAD_INPUT_RIGHT)
 	{
 		m_dirNo = 2;
 		isKey = true;
+		m_pos.x += kSpeedX;
+
+		if (m_pos.x > Game::kScreenWidth - kGraphicSizeX)
+		{
+			m_pos.x = static_cast<float>(Game::kScreenWidth - kGraphicSizeX);
+		}
 	}
 
 	// キャラクターのアニメーション
 	if(isKey) m_animeFrame++;
+	
 	if (m_animeFrame >= kGraphicDivX * kAnimeChangeFrame)
 	{
 		m_animeFrame = 0;
 	}
 
 	int tempAnimeNo = m_animeFrame / kAnimeChangeFrame;
-	m_animeNo = m_dirNo * kGraphicDivX + tempAnimeNo;
+	m_animeNo = m_dirNo * kGraphicDivX + tempAnimeNo;		// 押されたキーによってアニメーションを変化させる
 }
 
 void Player::draw()

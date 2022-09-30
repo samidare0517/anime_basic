@@ -10,7 +10,7 @@ public:
 	// グラフィックデータ分割数
 	static constexpr int kGraphicDivX = 3;
 	static constexpr int kGraphicDivY = 4;
-	static constexpr int kGraphicDivNum = kGraphicDivX * kGraphicDivX;
+	static constexpr int kGraphicDivNum = kGraphicDivX * kGraphicDivY;
 
 	// プレイヤーグラフィックサイズ
 	static constexpr int kGraphicSizeX = 32;
