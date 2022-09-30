@@ -37,7 +37,11 @@ SceneMain::~SceneMain()
 void SceneMain::init()
 {
 	LoadDivGraph(kPlayerFraphicFilename, kPlayerFraphivcDivNum, kPlayerFraphivcDivX, kPlayerFraphivcDivY, kPlayerFraphivcSizeX, kPlayerFraphivcSizeY, m_hPlayerGraphic);
-	m_player.setHandle(m_hPlayerGraphic[4]);
+	
+	for (int i = 0; i < kPlayerFraphivcDivNum; i++)
+	{
+		m_player.setHandle(m_hPlayerGraphic[4]);
+	}
 	m_player.init();
 }
 

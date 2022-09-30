@@ -13,8 +13,13 @@ namespace
 Player::Player()
 {
 	// ‰Šú‰»
-	m_handle = -1;
+	for (auto& handle : m_handle)
+	{
+		handle = -1;
+	}
 }
+	
+
 
 Player::~Player()
 {
@@ -53,5 +58,5 @@ void Player::update()
 
 void Player::draw()
 {
-	DrawGraph(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), m_handle, true);
+	DrawGraph(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), m_handle[0], true);
 }
